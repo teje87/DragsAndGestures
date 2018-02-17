@@ -7,25 +7,30 @@ import Gestures from 'react-native-easy-gestures';
 export default class App extends React.Component {
 
     state = {
-      editable : true
+      editable : true,
+      styles: {
+        left: 0,
+        top: 0,
+        transform: [
+          { rotate: '0deg' },
+          { scale: 1 },
+        ],
+      }
     }
-  
-
     
- 
-
 
   render() {
     return (
-       
+            
       <View style={styles.container}>
         
           <Gestures
             rotatable={this.state.editable}
-            scalable={this.state.editable}
+            draggable={this.state.editable}
             onChange={(event, styles) => {
-              console.log(styles);
+              this.setState({styles:styles})
             }}
+            
           >
   
         
@@ -49,7 +54,7 @@ export default class App extends React.Component {
           <View style={styles.green}></View>
         </Interactable.View>
       
-        <Button  title="editar" color="#faa" onPress={()=> {console.log(this.state.editable),this.setState({editable:false})}} ></Button>
+        <Button  title="editar" color="#faa" onPress={()=> {console.log(this.state.styles),console.log(this.state.editable),this.setState({editable:false})}} ></Button>
 
       </View>
     );
