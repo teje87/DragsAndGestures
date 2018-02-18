@@ -25,12 +25,11 @@ export default class App extends React.Component {
       <View style={styles.container}>
         
           <Gestures
-            rotatable={this.state.editable}
+            editable = {this.state.editable}
             draggable={this.state.editable}
             onChange={(event, styles) => {
               this.setState({styles:styles})
             }}
-            
           >
   
         
@@ -54,7 +53,18 @@ export default class App extends React.Component {
           <View style={styles.green}></View>
         </Interactable.View>
       
-        <Button  title="editar" color="#faa" onPress={()=> {console.log(this.state.styles),console.log(this.state.editable),this.setState({editable:false})}} ></Button>
+        <Button  
+          title="editar" 
+          color="#faa" 
+          onPress={()=> 
+            {console.log(this.state.styles),
+              console.log(this.state.editable),
+              this.setState(prevState => ({
+                editable: !prevState.editable
+              }))
+            }
+          }>
+        </Button>
 
       </View>
     );
