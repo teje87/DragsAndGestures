@@ -1,7 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, TouchableOpacity } from 'react-native';
 import Interactable from 'react-native-interactable';
-import Gestures from 'react-native-easy-gestures';
+
+import  GestureView  from './components/gestureView';
 
 
 export default class App extends React.Component {
@@ -22,37 +23,12 @@ export default class App extends React.Component {
   render() {
     return (
             
-      <View style={styles.container}>
-        
-          <Gestures
-            editable = {this.state.editable}
-            draggable={this.state.editable}
-            onChange={(event, styles) => {
-              this.setState({styles:styles})
-            }}
-          >
-  
-        
-          <Interactable.View
-            verticalOnly={true}
-            dragEnabled={true}
-            snapPoints={[{y: 0}, {y: 100}, {y: 200}]}
-          >
-            <View style={styles.green}></View>
-          </Interactable.View>
-
-      </Gestures>
-
-
-        <Interactable.View
-          verticalOnly={true}
-          dragEnabled={true}
-          snapPoints={[{y: 0}, {y: 100}, {y: 200}]}
-        >
-          
-          <View style={styles.green}></View>
-        </Interactable.View>
+    <View style={styles.container}>    
       
+      
+    <GestureView editable={this.state.editable} data={this.state.styles}></GestureView>
+
+
         <Button  
           title="editar" 
           color="#faa" 
@@ -71,18 +47,11 @@ export default class App extends React.Component {
   }
 }
 
-const styles = StyleSheet.create({
+const styles =  StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  green: {
-    height: 75,
-    width:200,
-    backgroundColor: '#5894f3',
-    alignItems: 'center',
-    zIndex: 1001
   }
-});
+})
