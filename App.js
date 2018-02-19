@@ -8,6 +8,8 @@ import  GestureView  from './components/gestureView';
 export default class App extends React.Component {
 
     state = {
+      index:0,
+      myArr: [],
       editable : true,
       styles: {
         left: 0,
@@ -18,23 +20,36 @@ export default class App extends React.Component {
         ],
       }
     }
+
+    
+
+    _onPressOut() {
+      let temp = this.state.index ++;
+      console.log("pae")
+      this.state.myArr.push(temp)
+      this.setState({
+          myArr: this.state.myArr
+      })
+    }
     
 
   render() {
+
+    let Arr = this.state.myArr.map((a, i) => {
+      return (<GestureView key={i} editable={this.state.editable} data={this.state.styles}></GestureView>)
+    }) 
+
     return (
             
     <View style={styles.container}>    
       
-      
-    <GestureView editable={this.state.editable} data={this.state.styles}></GestureView>
-
+      {Arr}
 
         <Button  
           title="editar" 
           color="#faa" 
           onPress={()=> 
-            {console.log(this.state.styles),
-              console.log(this.state.editable),
+            { this._onPressOut(),
               this.setState(prevState => ({
                 editable: !prevState.editable
               }))
