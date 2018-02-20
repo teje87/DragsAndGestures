@@ -31,6 +31,12 @@ export default class App extends React.Component {
           myArr: this.state.myArr
       })
     }
+
+    switchState(){
+      this.setState(prevState => ({
+        editable: !prevState.editable
+      }))
+    }
     
 
   render() {
@@ -46,16 +52,21 @@ export default class App extends React.Component {
       {Arr}
 
         <Button  
-          title="editar" 
+          title="añadir" 
           color="#faa" 
-          onPress={()=> 
-            { this._onPressOut(),
-              this.setState(prevState => ({
-                editable: !prevState.editable
-              }))
-            }
-          }>
-        </Button>
+          onPress={()=> { this._onPressOut()}
+          }
+        />
+
+        <Button  
+          title="editable" 
+          color="#afa" 
+          onPress={()=> { this.switchState()}
+          }
+        />
+        
+
+        
 
       </View>
     );
